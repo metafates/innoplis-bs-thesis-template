@@ -1,6 +1,6 @@
 # Bachelor's thesis Thesis Template
 
-**Unofficial** BS thesis typst template for Innoplis University.
+**Unofficial** BS thesis typst template for Innopolis University.
 
 See [main.typ](./main.typ) as an entry point.
 
