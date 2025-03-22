@@ -1,4 +1,4 @@
-# Bachelor's thesis Thesis Template
+# Bachelor's Thesis Template
 
 **Unofficial** BS thesis typst template for Innopolis University.
 
