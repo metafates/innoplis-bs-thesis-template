@@ -6,6 +6,9 @@
 // Title has its own styles that differ from the template. Therefore, we apply template only after title
 #show: template
 
+// Start page counter from here
+#counter(page).update(1)
+
 #include "sections/contents.typ"
 #include "sections/list/tables.typ"
 #include "sections/list/figures.typ"

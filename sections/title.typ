@@ -46,7 +46,7 @@ Area of Specialization / Academic Program Title: \
 ) = {
   let e(t) = text(lang: "en", t)
   let r(t) = text(lang: "ru", t)
-  
+
   if ru == none and en == none { return [] }
   if ru == none and en != none { return e(en) }
   if ru != none and en == none { return r(ru) }
@@ -57,16 +57,17 @@ Area of Specialization / Academic Program Title: \
 #let field(
   placeholder: none,
   content: none,
+  align: center + horizon
 ) = {
   table.cell(
     fill: rgb("#D9D9D9"),
-    align: center + horizon,
+    align: align,
   )[
     #if content != none {
       content
     } else if placeholder != none {
       set text(fill: rgb("#808080"), size: 0.7em)
-      
+
       placeholder
     }
   ]
@@ -80,6 +81,7 @@ Area of Specialization / Academic Program Title: \
 
 #let signature = field(
   placeholder: multilang(ru: [подпись], en: [signature]),
+  align: center + bottom
 )
 #let signatures = table(
   columns: (4fr, 6fr, 3fr),
@@ -96,9 +98,9 @@ Area of Specialization / Academic Program Title: \
   ),
   field(content: info.supervisor),
   signature,
-  multilang(ru: [Консультанты], en: [Consultants]),
-  field(content: info.consultants.join("\n")),
-  signature
+  // multilang(ru: [Консультанты], en: [Consultants]),
+  // field(),
+  // signature
 )
 
 #align(center + horizon, topic)

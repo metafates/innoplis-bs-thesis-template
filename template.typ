@@ -5,11 +5,33 @@
     size: 14pt,
     lang: "en",
     region: "ru",
+    top-edge: 0.7em,
+    bottom-edge: -0.3em,
+    font:  "Tempora LGC Uni",
+  )
+  set par(
+    leading: 0.75em,
+    first-line-indent: (
+      amount: 1.25cm,
+      all: true,
+    ),
   )
   set page(
     "a4",
-    margin: (left: 2.5cm, top: 2.5cm),
+    margin: (
+      left: 2.5cm,
+      top: 1in + 2.2cm,
+      right: 2.2cm,
+      bottom: 2.2cm
+    ),
+    footer: context {},
     header: context {
+      set par(
+        first-line-indent: (
+          amount: 0cm,
+        ),
+      )
+
       let headings = query(
         selector(heading)
         .before(here())
@@ -25,46 +47,64 @@
         return
       }
 
-      let isChapterBegin = query(selector(heading.where(level: 1)))
+      let is-chapter-begin = query(selector(heading.where(level: 1)))
         .filter(h1 => here().page() == h1.location().page()).len() > 0
 
-      if isChapterBegin {
+      if is-chapter-begin {
         return
       }
-      
+
+
       strong(counter(heading).display() + " " + current.body)
+      h(1fr)
+      strong[#here().page()]
 
       line(length: 100%)
+
     }
   )
 
   show heading.where(level: 2): it => {
     set text(size: 1.3em)
-    
+
     it
 
-    v(1em)
+    v(.5cm)
   }
-  
+  show heading.where(level: 3): it => {
+    set text(size: 1.25em)
+
+    it
+
+    v(.2cm)
+  }
+
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
 
+    set par(
+      leading: 1em,
+      first-line-indent: (
+        amount: 0cm,
+        all: false,
+      ),
+    )
+
     set text(size: 1.5em)
 
-    v(5em)
-
+    v(2.5cm)
     if it.numbering != none {
       [
         Chapter #counter(heading).display()
 
 
         #text(size: 1.2em, it.body)
-        
-        #v(1em)
       ]
     } else { it }
+
+    v(0.5cm)
   }
-  
+
   set math.equation(numbering: "(1)")
 
   set ref(supplement: it => {
@@ -72,9 +112,9 @@
       "Chapter"
     } else {
       it.supplement
-    } 
+    }
   })
-  
+
   show ref: it => {
     let eq = math.equation
     let el = it.element
@@ -90,6 +130,7 @@
     }
   }
 
+  show figure: set block(breakable: true)
   show figure: it => {
     v(2em)
     it
@@ -104,28 +145,21 @@
     align(center, it.body)
   }
 
-  set table(
-    stroke: (x, y) => (
-      top: 1pt,
-      bottom: 1pt,
-      left: if x > 0 { 1pt }
-    )
-  )
-  
-  show figure.where(kind: image): set figure(supplement: "Fig.")
-  show figure.where(kind: image): set figure.caption(separator: ". ")
-  
+  // show figure.where(kind: image): set figure(supplement: "Fig.")
+  // show figure.where(kind: image): set figure.caption(separator: ". ")
+
   show figure.where(kind: "figure"): set figure(supplement: "Fig.")
   show figure.where(kind: "figure"): set figure.caption(separator: ". ")
-  
+
   set outline(indent: auto)
 
-  show raw.where(block: false): box.with(
-    fill: luma(240),
-    inset: (x: 3pt, y: 0pt),
-    outset: (y: 3pt),
+  show raw.where(block: true): block.with(
+    fill: luma(249),
+    inset: 10pt,
     radius: 2pt,
+    stroke: 1pt,
   )
+
 
   body
 }

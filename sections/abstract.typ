@@ -1,5 +1,7 @@
 #set align(center + horizon)
 
-= Abstract
+#align(center)[
+  = Abstract
+]
 
 #lorem(100)
