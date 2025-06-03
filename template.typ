@@ -151,6 +151,10 @@
 
   show figure.where(kind: "figure"): set figure(supplement: "Fig.")
   show figure.where(kind: "figure"): set figure.caption(separator: ". ")
+  show figure.caption: it => {
+    set align(left)
+    it
+  }
 
   set outline(indent: auto)
 
