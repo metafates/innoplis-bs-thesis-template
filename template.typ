@@ -11,6 +11,7 @@
   )
   set par(
     leading: 0.75em,
+    justify: true,
     first-line-indent: (
       amount: 1.25cm,
       all: true,
@@ -138,7 +139,7 @@
   }
   show figure.where(kind: table): it => {
     align(center)[
-      TABLE #it.counter.display("I") \
+      TABLE #it.counter.display("1") \
       #it.caption.body
     ]
 

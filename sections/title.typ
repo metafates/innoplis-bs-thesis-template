@@ -57,14 +57,14 @@ Area of Specialization / Academic Program Title: \
 #let field(
   placeholder: none,
   content: none,
-  align: center + horizon
+  align: top + left
 ) = {
   table.cell(
     fill: rgb("#D9D9D9"),
     align: align,
   )[
     #if content != none {
-      content
+      strong(content)
     } else if placeholder != none {
       set text(fill: rgb("#808080"), size: 0.7em)
 
